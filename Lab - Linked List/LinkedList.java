@@ -1,87 +1,69 @@
+import javax.xml.transform.Templates;
+
 public class LinkedList {
     Node head;
     Node tail;
 
-    public LinkedList() {
+    LinkedList() {
         head = null;
+        tail = null;
+
     }
 
-    public void insertStart(int data) {
-        Node e = new Node(data);
-        if (head == null)
-            head = e;
-        else {
-            head = e;
-            e.next = head;
+    void insert(int data) {
+        Node temp = new Node(data);
+        if (head == null) {
+            head = temp;
+            head.prev = null;
+            tail = temp;
+            tail.next = null;
+        } else {
+            tail.next = temp;
+            temp.prev = tail;
+            tail = temp;
+            tail.next = null;
         }
     }
 
-    // public void insertEnd(int data) {
-    // Node e = new Node(data);
-    // e.data = data;
-    // if (head == null)
-    // head = e;
-    // else {
-    // head.next = e;
-    // }
-    // }
+    void delete() {
+        if (head == null && tail == null) {
+            System.out.println("List is empty");
+        } else {
+            head = head.next;
+        }
+    }
 
-    public void displayList() {
-        Node current = head;
-        while (current != null) {
-            System.out.println(current.data);
-            current = current.next;
+    void displayList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+
+    class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        Node() {
+
+        }
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+            prev = null;
         }
     }
 
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
-        list.insertStart(10);
-        list.insertStart(20);
-        list.insertStart(30);
-        // list.insertEnd(40);
-        // list.insertEnd(50);
-        // list.insertEnd(60);
-        // list.insertEnd(70);
-        // list.insertEnd(80);
-        // list.insertEnd(90);
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.delete();
+
         list.displayList();
-
-    }
-}
-
-class Node {
-    int data;
-    Node next;
-
-    public Node(int data, Node next) {
-        this.data = data;
-        this.next = next;
-    }
-
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-
-    public Node() {
-        this.data = data;
-        this.next = next;
-    }
-
-    public int getData() {
-        return data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
     }
 }
