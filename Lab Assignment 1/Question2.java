@@ -15,25 +15,25 @@ class ReversePolishNotation {
                 case "+":
                     int a = stack.pop();
                     int b = stack.pop();
-                    stack.push(a + b);
+                    stack.push(b + a);
                     break;
 
                 case "-":
                     a = stack.pop();
                     b = stack.pop();
-                    stack.push(a - b);
+                    stack.push(b - a);
                     break;
 
                 case "*":
                     a = stack.pop();
                     b = stack.pop();
-                    stack.push(a * b);
+                    stack.push(b * a);
                     break;
 
                 case "/":
                     a = stack.pop();
                     b = stack.pop();
-                    a = a / b;
+                    a = b / a;
                     stack.push(a);
                     break;
 
